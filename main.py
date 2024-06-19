@@ -15,7 +15,6 @@ pygame.init()
 pygame.mixer.init()
 
 
-
 pipe_up = pygame.image.load("pipeup.png")
 pipe_up = pygame.transform.scale(pipe_up, (100, 500))
 pipe_down = pygame.image.load("pipedown.png")
@@ -46,8 +45,16 @@ ground_velocity = -5
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((x, y))
 running = True
-pipe_y = randint(-400, -100)
-pipe_x = 1200
+
+
+# Class 
+class makepipe:
+    def pipe(self):
+        self.pipe_y = randint(-400, -100)
+        self.pipe_x = 800
+        self.pipe_x -= ground_velocity
+        screen.blit(pipe_up, (self.pipe_x, self.pipe_y))
+        screen.blit(pipe_down, (self.pipe_x, self.pipe_y + 700))
 
 
 # Loop
@@ -87,20 +94,15 @@ while running:
 
     if bird_pos >= 635 or bird_pos <= 0:
         running = False
-
+        
 
     screen.fill((white))
 
     screen.blit(background, (0, 0))
-
-    if pipe_counter == 120:
-        pipe_counter = 0
-    pipe_x += ground_velocity
-    screen.blit(pipe_down, (pipe_x, pipe_y))
-    screen.blit(pipe_up, (pipe_x, pipe_y + 700))
         
     screen.blit(ground, (ground_pos, 675))
     screen.blit(bird, (500, bird_pos))
+    
 
     pygame.display.update()
 
