@@ -1,39 +1,12 @@
+import pipe
+import game 
 import pygame as pg
 from random import randint
 
 pg.init()
 clock = pg.time.Clock()
 
-class game:
-    def __init__(self):
-        # Game Variables
-        self.groundx = 0
-        self.groundy = 710
-        self.screenx = 1600
-        self.screeny = 970
-        self.gameover = False
-
-        # bird Variables 
-        self.accn = 2
-        self.terminalVelo = 10
-        self.bird_velo = 0
-
-        # gameSprites 
-        self.birdx = self.screenx/2 - 100
-        self.birdy = self.screeny/3
-        self.bird = pg.image.load("bird.png")
-        self.bird = pg.transform.scale(self.bird, (self.screenx/14, self.screeny/15))
-        self.bg = pg.image.load("bg.jpg")
-        self.bg = pg.transform.scale(self.bg, (self.screenx, self.screeny))
-        self.ground = pg.image.load("ground.png")
-        self.ground = pg.transform.scale(self.ground, (1700, 300))
-        self.pipedown = pg.image.load("pipedown.png")
-        self.pipeup = pg.image.load("pipeup.png")
-
-    def pipes(self):
-        pass
-
-play = game()
+play = game.game()
 
 # colors
 white = (255, 255, 255)
@@ -42,7 +15,8 @@ white = (255, 255, 255)
 screen = pg.display.set_mode((play.screenx, play.screeny))
 pg.display.set_caption("Flappy Bird")
 
-while not play.gameover:        
+while not play.gameover:
+    
     for event in pg.event.get():
         if event.type == pg.QUIT:
             play.gameover = True
